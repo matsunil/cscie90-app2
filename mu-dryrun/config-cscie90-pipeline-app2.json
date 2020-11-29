@@ -1,0 +1,23 @@
+{
+  "Parameters": {
+    "AcptEnv": "dev",
+    "BuildComputeType": "BUILD_GENERAL1_SMALL",
+    "BuildImage": "aws/codebuild/standard:2.0",
+    "BuildType": "linuxContainer",
+    "EnableAcptStage": "true",
+    "EnableBuildStage": "true",
+    "EnableProdStage": "false",
+    "GitHubToken": "",
+    "MuBasedir": ".",
+    "MuDownloadVersion": "1.5.10",
+    "MuFilename": "mu.yml",
+    "Namespace": "cscie90",
+    "PipelineBucket": "",
+    "ServiceName": "app2",
+    "SourceBranch": "master",
+    "SourceProvider": "GitHub",
+    "SourceRepo": "matsunil/hbs-app2",
+    "TestComputeType": "BUILD_GENERAL1_SMALL",
+    "TestType": "linuxContainer"
+  }
+}

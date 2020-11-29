@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+  pre_build:
+    commands:
+      - PASS=`aws ssm get-parameter --name "/cscie90/hello/dev" --with-decryption --query 'Parameter.Value' --output text`
+      - sed -i -e "s/REPLACEME/$PASS/"  src/main/webapp/WEB-INF/views/home.jsp
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
+

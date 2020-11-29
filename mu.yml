@@ -1,0 +1,58 @@
+environments:
+- name: dev
+  provider: ecs-fargate
+#  vpcTarget:
+#    vpcId: vpc-09971460
+#    instanceSubnetIds:
+#      - subnet-b857c6d1
+#      - subnet-3ce23a47
+#      - subnet-af9462e2
+#    elbSubnetIds:
+#      - subnet-5456c73d
+#      - subnet-9ee139e5
+#      - subnet-db956396
+namespace: cscie90
+service:
+  name: app2
+  port: 8080
+  healthEndpoint: /
+  minSize: 2
+  pathPatterns:
+  - /app2
+  - /app2/*
+  # environment:
+  #   SPRING_DATASOURCE_USERNAME: ${DatabaseMasterUsername}
+  #   SPRING_DATASOURCE_PASSWORD: ${DatabaseMasterPassword}
+  #   SPRING_DATASOURCE_URL: jdbc:mysql://${DatabaseEndpointAddress}:${DatabaseEndpointPort}/${DatabaseName}
+  # database:
+  #   name: cscie90app2
+  #   engine: mysql
+  #   instanceClass: db.t3.small
+  pipeline:
+    source:
+      provider: GitHub
+    build:
+      disabled: false
+      image: aws/codebuild/standard:2.0
+      type: linuxContainer
+      computeType: BUILD_GENERAL1_SMALL       # The type of compute instance for builds (default: BUILD_GENERAL1_SMALL)
+    acceptance:
+      disabled: false                         # Disable the acceptance stage of the pipeline (default: false)
+      environment: dev                 # The environment name to deploy to for testing (default: acceptance)
+      type: linuxContainer
+      computeType: BUILD_GENERAL1_SMALL       # The type of compute instance for testing builds (default: BUILD_GENERAL1_SMALL)
+    production:
+      disabled: true                         # Disable the production stage of the pipeline (default: false)
+templates:
+  cscie90-iam-pipeline-app2:
+    Resources:
+      CodePipelineAccessPolicy:
+        Properties:
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Action:
+              - ssm:GetParameter
+              Resource: 
+                - Fn::Sub: arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/cscie90/hello/*
+              Effect: Allow

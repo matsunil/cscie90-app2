@@ -1,0 +1,9 @@
+{
+  "Parameters": {
+    "CodeDeployBucket": "",
+    "EnvironmentName": "dev",
+    "Namespace": "cscie90",
+    "Provider": "ecs-fargate",
+    "ServiceName": "app2"
+  }
+}

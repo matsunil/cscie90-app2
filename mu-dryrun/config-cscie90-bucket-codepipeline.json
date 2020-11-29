@@ -1,0 +1,6 @@
+{
+  "Parameters": {
+    "BucketPrefix": "codepipeline",
+    "Namespace": "cscie90"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "Parameters": {
+    "AcptCloudFormationRoleArn": "",
+    "AcptEnv": "dev",
+    "CodeDeployBucket": "",
+    "EnableAcptStage": "true",
+    "EnableBuildStage": "true",
+    "EnableProdStage": "false",
+    "Namespace": "cscie90",
+    "PipelineBucket": "",
+    "ProdCloudFormationRoleArn": "",
+    "ServiceName": "app2",
+    "SourceProvider": "GitHub",
+    "SourceRepo": "matsunil/hbs-app2"
+  }
+}
