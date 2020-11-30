@@ -1,16 +1,16 @@
 environments:
 - name: dev
   provider: ecs-fargate
-#  vpcTarget:
-#    vpcId: vpc-09971460
-#    instanceSubnetIds:
-#      - subnet-b857c6d1
-#      - subnet-3ce23a47
-#      - subnet-af9462e2
-#    elbSubnetIds:
-#      - subnet-5456c73d
-#      - subnet-9ee139e5
-#      - subnet-db956396
+  vpcTarget:
+    vpcId: vpc-01e4e92cc45dee11c
+    instanceSubnetIds:
+      - subnet-01e4511360d8be665
+      - subnet-024a8f34df88bdee8
+      - subnet-013648aa4f6434e8e
+    elbSubnetIds:
+      - subnet-012e60854c1b06376
+      - subnet-013648aa4f6434e8e
+      - subnet-02137dfc01794e560
 namespace: cscie90
 service:
   name: app2
